@@ -1,39 +1,37 @@
-import React from 'react';
+import Navbar from './Navbar'
+import Home from './Home'
+import Create from './Create'
+import { useState } from 'react'
 
-import Post from './Post';
-import './App.css';
-import AddPostButton from './AddPostButton';
+function App() {
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [
-        {name: "Gian", content:"Gwapa kay ka", likes:2},
-        {name: "Shad", content:"Pogi ko", likes:0},
-        {name: "Carlos", content:"Hanging around", likes:0},
-        {name: "Reyner", content:"Pagod na ako!", likes:0},
-      ]
-    }
-  }
-
-  addPost = () => {
-    this.setState({
-       posts: [...this.state.posts, {name: "Gian", content:"Gwapa kay ka", likes:2}]
-    })
-  }
+  const [posts, setPosts] = useState([
+    {name: "Gian", content: "Gwapa kay ka", likes: 0},
+    {name: "Shad", content: "Pogi ko", likes: 0},
+    {name: "Carlos", content: "Hanging around", likes: 0},
+    {name: "Reyner", content: "Pagod na ako!", likes: 0},
+  ])
 
 
-  render() {
-    return (
-      <div className='app'>
-        {this.state.posts.map(post => (
-          <Post name={post.name} content={post.content} likes={post.likes} />
-        ))}
-        <AddPostButton addPostHandler={this.addPost} />
+const handleSubmit = post => {
+  setPosts(oldPosts => {
+    const createPost = [...oldPosts, post]
+    return createPost
+  })
+}
+
+console.log(posts)
+  return (
+
+      <div className="App">
+        <Navbar/>
+        <div className="content">
+          <Home posts={ posts }/>
+        </div>
+        <Create onFormSubmit={handleSubmit} />
       </div>
-    );
-  }}
 
+  );
+}
 
 export default App;
