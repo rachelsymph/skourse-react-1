@@ -1,14 +1,125 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500&family=Poppins:wght@300;600;900&display=swap');
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+}
+body {
+  background-color: #333;
+}
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 1rem auto;
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+}
+.navbar h1 {
+  font-family: 'Poppins', sans-serif;
+  color: #FFC700;
+}
+.navbar .links {
+  font-family: 'Bitter', serif;
+  margin-left: auto;
+}
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: #FFC700;
+}
+.content {
+  max-width: 600px;
+  max-height: 500px;
+  margin: 40px auto 10px auto;
+  padding: 20px;
+  overflow: auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.post {
+  padding: 20px 10px 10px 20px;
+  background-color: #222;
+  border-radius: 8px;
+  border-left: 8px solid #FFC700;
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+.post h3 {
+  color: #FFC700;
+  font-family: 'Poppins', sans-serif;
 }
 
+.like-btn {
+  background-color: #444;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 0;
+}
+.like-btn svg {
+  margin-right: 3px;
+  width: 23px;
+  height: 20px;
+}
+.btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.create {
+  max-width: 400px;
+  margin: 0 auto 100px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+.create label {
+  text-align: left;
+  display: block;
+}
+.create h2 {
+  font-size: 20px;
+  color: #FFC700;
+  margin-bottom: 30px;
+}
+.create input, .create textarea {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #FFC700;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  color: #222;
+}
+.create button {
+  background: #FFC700;
+  color: #333;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 0;
+}
+
+
+
+::-webkit-scrollbar {
+  width: .2em;
+  height: 1em;
+}
+::-webkit-scrollbar-track {
+  background-color: #222;
+  border-radius: 100vw;
+  margin-block: 0.5em;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #FFC700);
+  border-radius: 100vw;
+}
