@@ -1,30 +1,36 @@
-import React from 'react';
+import Navbar from './Navbar'
+import Home from './Home'
+import Create from './Create'
+import { useState } from 'react'
 
-import Post from './Post';
-import './App.css';
+function App() {
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [
-        {name: "Gian", content:"Gwapa kay ka", likes:2},
-        {name: "Shad", content:"Pogi ko", likes:0},
-        {name: "Carlos", content:"Hanging around", likes:0},
-        {name: "Reyner", content:"Pagod na ako!", likes:0},
-      ]
-    }
+  const [ posts, setPosts ] = useState([
+    { name: "Gian", content: "Gwapa kay ka", id:1 },
+    { name: "Shad", content: "Pogi ko", id:2 },
+    { name: "Carlos", content: "Hanging around", id:3 },
+    { name: "Reyner", content: "Pagod na ako!", id:4 },
+  ])
+
+
+  const handleSubmit = post => {
+    setPosts( oldPosts => {
+      const createPost = [ ...oldPosts, post]
+      return createPost
+    })
   }
 
-  render() {
     return (
-      <div className='app'>
-        {this.state.posts.map(post => (
-          <Post name={post.name} content={post.content} likes={post.likes} />
-        ))}
-      </div>
-    );
-  }}
 
+        <div className="App">
+          <Navbar/>
+          <div className="content">
+            <Home posts={ posts }/>
+          </div>
+          <Create onFormSubmit={ handleSubmit } />
+        </div>
+
+    );
+  }
 
 export default App;
