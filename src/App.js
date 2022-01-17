@@ -6,26 +6,66 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.postID = 0;
     this.state = {
-      posts: [
-        {name: "Gian", content:"Gwapa kay ka", likes:2},
-        {name: "Shad", content:"Pogi ko", likes:0},
-        {name: "Carlos", content:"Hanging around", likes:0},
-        {name: "Reyner", content:"Pagod na ako!", likes:0},
-      ]
+      posts: [ 
+      ],
+      message: "",
+      name: "",
     }
   }
 
+  setName = (e) =>{
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  setMessage = (e) =>{
+    this.setState({
+      message: e.target.value
+    })
+  }
+
+  addPost = (e) =>{
+    this.setState({
+      name: e.target.value,
+      message: e.target.value
+    })
+    this.postID = this.postID + 1;
+    const PostArray = Object.assign([], this.state.posts)
+    PostArray.push({
+      id : this.postID,
+      message : this.state.message,
+      name : this.state.name,
+      likes : 0
+    })
+
+    this.setState({
+      posts: PostArray
+    })
+  }
 
   render() {
     return (
       <div className='app'>
-        {this.state.posts.map(post => (
+       <div className="inputs">
+        <label>Name:</label>
+        <input type="text" onChange={this.setName}></input>
+        <label>Message:</label>
+        <input className='message' type="content" onChange={this.setMessage}></input>
+        <button type="submit" onClick={this.addPost}>Add</button>
+       </div>
+           <div className='post-div'>
+          {this.state.posts.map(post => (
           <Post name={post.name} content={post.content} likes={post.likes} />
-        ))}
+          ))}
+          </div> 
       </div>
     );
   }}
 
 
 export default App;
+
+
