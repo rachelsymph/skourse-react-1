@@ -2,63 +2,32 @@ import React from 'react';
 
 import Post from './Post';
 import './App.css';
-
+import AddPost from './AddPost';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.postID = 0;
     this.state = {
-      posts: [ 
-      ],
-      message: "",
-      name: "",
+      posts: [
+        {id: '1',name: "Gian", content:"Gwapa kay ka", likes:2},
+        {id: '2',name: "Shad", content:"Pogi ko", likes:0},
+        {id: '3',name: "Carlos", content:"Hanging around", likes:0},
+        {id: '4',name: "Reyner", content:"Pagod na ako!", likes:0},
+      ]
     }
   }
-
-  setName = (e) =>{
-    this.setState({
-      name: e.target.value
-    })
-  }
-
-  setMessage = (e) =>{
-    this.setState({
-      message: e.target.value
-    })
-  }
-
-  addPost = (e) =>{
-    this.setState({
-      name: e.target.value,
-      message: e.target.value
-    })
-    this.postID = this.postID + 1;
-    const PostArray = Object.assign([], this.state.posts)
-    PostArray.push({
-      id : this.postID,
-      message : this.state.message,
-      name : this.state.name,
-      likes : 0
-    })
-
-    this.setState({
-      posts: PostArray
-    })
+  handlePost = (post) =>{
+    this.setState(loadState =>({
+     posts: [...loadState.posts, post]
+    }))
   }
 
   render() {
     return (
       <div className='app'>
-       <div className="inputs">
-        <label>Name:</label>
-        <input type="text" onChange={this.setName}></input>
-        <label>Message:</label>
-        <input className='message' type="content" onChange={this.setMessage}></input>
-        <button type="submit" onClick={this.addPost}>Add</button>
-       </div>
+            <AddPost handleProps={this.handlePost}/>
            <div className='post-div'>
           {this.state.posts.map(post => (
-          <Post name={post.name} content={post.content} likes={post.likes} />
+          <Post key={post.id} name={post.name} content={post.content} likes={post.likes} />
           ))}
           </div> 
       </div>
