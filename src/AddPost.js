@@ -1,48 +1,46 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 
-export default class AddPost extends Component {
+const  AddPost = ({handleProps})=> {
   
-    constructor(props){
-        super(props);
-        this.state = {
-            id: 5,
-            name: '',
-            content: '',
-            likes: 0,
-        }
+    const [post, setPost] = useState({ id: 5, name:'', content:'', likes:0,})
        
-    }
   
-    handleNameChange = (e) =>{
-            this.setState({
-                name: e.target.value
+   const handleNameChange = (e) =>{
            
+            setPost({
+                ...post,name: e.target.value
             })
+            
+    
     }
 
-    handleMessageChange = (e) =>{
-        this.setState({
-            content: e.target.value
+    const  handleContentChange = (e) =>{
+        setPost({
+            ...post,content: e.target.value
         })
+        
     }
 
-    handleSubmit = (e) => {
-       this.setState({
-            id: this.state.id +1,
+    const handleSubmit = (e) => {
+        console.log({post})
+       setPost({
+            ...post,id: post.id +1,
        })
-       this.props.handleProps(this.state);
+      handleProps(post);
       
     }
 
-    render() {
+    
         return (
             <div className="inputs">
             <label>Name:</label>
-            <input type="text" onChange={this.handleNameChange} ></input>
+            <input type="text" onChange={handleNameChange}></input>
             <label>Message:</label>
-            <input className='message' type="content" onChange={this.handleMessageChange} ></input>
-            <button type="submit" onClick={this.handleSubmit}>Add</button>
+            <input className='message' type="content"  onChange={handleContentChange}></input>
+            <button type="submit" onClick={handleSubmit}>Add</button>
            </div>
         )
-    }
+    
 }
+
+export default AddPost;
