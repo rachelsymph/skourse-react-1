@@ -42,6 +42,9 @@ function App () {
   }
 
 
+
+  render() {
+
     return (
       
       <div className='app'>
