@@ -2,11 +2,12 @@ import React, {useState} from 'react'
 
 const  AddPost = ({handleProps})=> {
   
-    const [post, setPost] = useState({ id: 5, name:'', content:'', likes:0,})
+    const [post, setPost] = useState({
+         id: 5, name:'', content:'', likes:0,
+        })
        
   
-   const handleNameChange = (e) =>{
-           
+   const handleNameChange = (e) =>{  
             setPost({
                 ...post,name: e.target.value
             })
@@ -21,7 +22,14 @@ const  AddPost = ({handleProps})=> {
         
     }
 
+
     const handleSubmit = (e) => {
+
+        if (post.name === "" || post.content === "")  {
+            alert("Don't leave it blank");
+            return;
+          }
+        
         console.log({post})
        setPost({
             ...post,id: post.id +1,
